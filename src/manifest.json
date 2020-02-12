@@ -1,0 +1,12 @@
+{
+	"background": { "scripts": ["background.js"] },
+	"content_scripts": [ { "matches": ["*://*/*"], "js": ["content_script.js"] } ],
+	"description": "exposes post requests , e.g. to https://postpen.requestcatcher.com/",
+	"applications": {"gecko": {"id": "postpen@jochnickel.github.com"}},
+	"icons": { "48": "icons/border-48.png" },
+	"manifest_version": 2,
+	"name": "Post Request Sniffer",
+	"options_ui": { "page": "options.html" },
+	"permissions": [ "storage", "webRequest", "webRequestBlocking", "<all_urls>" ],
+	"version": "1.3"
+}
