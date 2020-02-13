@@ -8,5 +8,5 @@
 	"name": "Post Request Sniffer",
 	"options_ui": { "page": "options.html" },
 	"permissions": [ "storage", "webRequest", "webRequestBlocking", "<all_urls>" ],
-	"version": "1.3"
+	"version": "1.4"
 }
