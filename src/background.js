@@ -3,11 +3,16 @@ browser.webRequest.onBeforeRequest.addListener(
 		browser.storage.sync.get("logger_url").then(result=>{
 			const logger_url = result.logger_url;
 			if (data.method!=='POST') return;
-			if (!data.requestBody) return; // ?
+			if ("object"!==typeof(data.requestBody)) return; // ?
 			const url = data.url;
 			if (url==logger_url) return;
 			console.info(data);
-			const rawData = decodeURIComponent(String.fromCharCode.apply(null,new Uint8Array(data.requestBody.raw[0].bytes)));
+			const rawData =
+				(data.requestBody.raw) &&
+				(data.requestBody.raw[0]) &&
+				//Thank you javascript for making null an object
+					decodeURIComponent(String.fromCharCode.apply(null,new Uint8Array(data.requestBody.raw[0].bytes)))
+				|| "" ;
 			const formData = data.requestBody.formData;
 			const formDataString = JSON.stringify({formData});
 			const method = data.method;
